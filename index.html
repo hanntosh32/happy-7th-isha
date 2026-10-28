@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy 7th Monthsary, Isha!</title>
+    <!-- Romantic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffeef2 0%, #ffd1dc 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+            -webkit-tap-highlight-color: transparent;
+            position: relative;
+        }
+
+        /* FLOATING BACKGROUND ELEMENTS */
+        .ambient-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.7;
+            animation: floatUp 7s infinite linear;
+        }
+
+        /* SIZE VARIATIONS */
+        .size-sm { font-size: 16px; opacity: 0.55; }
+        .size-md { font-size: 26px; opacity: 0.7; }
+        .size-lg { font-size: 38px; opacity: 0.82; }
+        .size-xl { font-size: 56px; opacity: 0.9; filter: drop-shadow(0 4px 8px rgba(180,50,80,0.15)); }
+
+        /* HOPPING BUNNY & CARROT ANIMATIONS */
+        .hopping-bunny {
+            position: absolute;
+            opacity: 0.88;
+            animation: bunnyHop 10s infinite linear;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.8) rotate(0deg); opacity: 0; }
+            15% { opacity: 0.75; }
+            85% { opacity: 0.75; }
+            100% { transform: translateY(-12vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes bunnyHop {
+            0% { transform: translate(-20vw, 88vh) scale(0.8); opacity: 0; }
+            10% { opacity: 0.9; }
+            25% { transform: translate(15vw, 72vh) scale(1.1); }
+            45% { transform: translate(40vw, 84vh) scale(0.9); }
+            65% { transform: translate(68vw, 70vh) scale(1.15); }
+            85% { opacity: 0.9; }
+            100% { transform: translate(120vw, 80vh) scale(0.8); opacity: 0; }
+        }
+
+        /* SCREEN 1: ENVELOPE EXTERIOR */
+        #screen-envelope {
+            display: flex;
+            text-align: center;
+            width: 92%;
+            max-width: 440px;
+            height: 290px;
+            background: linear-gradient(145deg, #fff5f7 0%, #ffebf0 100%);
+            border-radius: 18px;
+            box-shadow: 
+                0 12px 35px rgba(180, 50, 80, 0.22),
+                inset 0 0 15px rgba(255, 255, 255, 0.8);
+            border: 2px solid #fcd3de;
+            position: relative;
+            z-index: 10;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 22px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #screen-envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            background: 
+                linear-gradient(215deg, transparent 48%, rgba(254,200,210,0.4) 49.5%, transparent 51%),
+                linear-gradient(145deg, transparent 48%, rgba(254,200,210,0.4) 49.5%, transparent 51%);
+            pointer-events: none;
+        }
+
+        .envelope-corner-flower {
+            position: absolute;
+            font-size: 24px;
+            z-index: 5;
+        }
+        .flower-tl { top: 12px; left: 14px; }
+        .flower-tr { top: 12px; right: 14px; }
+        .flower-bl { bottom: 12px; left: 14px; }
+        .flower-br { bottom: 12px; right: 14px; }
+
+        #screen-envelope h2 {
+            color: #9c2262;
+            font-family: 'Dancing Script', cursive; 
+            font-size: 34px;
+            font-weight: 700;
+            margin-top: 5px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.9);
+            z-index: 5;
+        }
+
+        .bouquet-seal {
+            font-size: 72px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            display: block;
+            z-index: 15;
+            margin-top: -5px;
+            filter: drop-shadow(0 6px 12px rgba(180,50,80,0.35));
+            animation: pulse 1.6s infinite;
+            transition: transform 0.2s;
+        }
+
+        .bouquet-seal:active {
+            transform: scale(0.9);
+        }
+
+        .envelope-hint {
+            color: #a87b8c; 
+            font-size: 14px; 
+            font-style: italic;
+            z-index: 5;
+        }
+
+        #screen-envelope.unfolding {
+            width: 100vw !important;
+            height: 100vh !important;
+            max-width: 100vw !important;
+            border-radius: 0 !important;
+            transform: scale(1) !important;
+            opacity: 0;
+            box-shadow: none;
+        }
+
+        /* SCREEN 2: FULL-SCREEN GAME & LETTER HUB */
+        #screen-game {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #fdfbf7;
+            background-image: radial-gradient(#f7e1e8 1.5px, transparent 1.5px), url('flower.jpg');
+            background-size: 24px 24px, cover;
+            background-position: center;
+            background-repeat: repeat, no-repeat;
+            z-index: 20;
+            overflow-y: auto;
+            padding: 40px 20px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #screen-game.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .game-wrapper {
+            width: 92%;
+            max-width: 680px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.94);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 50px rgba(156, 34, 98, 0.18);
+            border: 2px solid #f8d7e3;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            text-align: center;
+        }
+
+        .game-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 38px;
+            color: #9c2262;
+            margin-bottom: 18px;
+            line-height: 1.25;
+        }
+
+        .game-rules {
+            font-size: 16px;
+            color: #7a5c68;
+            background: #fff0f4;
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            border-left: 5px solid #d63384;
+            text-align: left;
+        }
+
+        .horizontal-category-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+            margin-bottom: 25px;
+        }
+
+        .menu-btn {
+            flex: 1;
+            background-color: #d63384;
+            color: white;
+            border: none;
+            padding: 18px 12px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 6px 16px rgba(214, 51, 132, 0.28);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 65px;
+        }
+
+        .menu-btn.locked {
+            background-color: #e0d0d6 !important;
+            color: #99808a !important;
+            box-shadow: none !important;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .menu-btn.solved {
+            background-color: #28a745 !important;
+            box-shadow: 0 6px 16px rgba(40, 167, 69, 0.32) !important;
+        }
+
+        .menu-btn:not(.locked):active {
+            transform: scale(0.95);
+        }
+
+        /* LOCKED LETTER SECTION */
+        .final-letter-card {
+            background: #fff5f8;
+            border: 2px dashed #f8a5c2;
+            padding: 22px 18px;
+            border-radius: 20px;
+            margin-top: 20px;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .final-letter-card.unlocked {
+            background: #e8f5e9;
+            border: 2px solid #28a745;
+        }
+
+        .chain-display {
+            font-size: 26px;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .letter-hint-text {
+            font-size: 14px;
+            color: #8a6372;
+            margin-bottom: 12px;
+            font-style: italic;
+        }
+
+        .final-letter-btn {
+            background-color: #8e24aa;
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 6px 18px rgba(142, 36, 170, 0.3);
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .final-letter-btn.locked {
+            background-color: #cccccc !important;
+            color: #666666 !important;
+            box-shadow: none !important;
+            cursor: not-allowed;
+        }
+
+        /* Quiz Layout Inside Hub */
+        .quiz-box {
+            display: none;
+            margin-top: 15px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .quiz-question {
+            font-size: 22px;
+            color: #3a3530;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+
+        .option-btn {
+            background-color: #fff;
+            color: #9c2262;
+            border: 2px solid #ffb6c1;
+            padding: 16px 24px;
+            font-size: 18px;
+            border-radius: 22px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            margin: 10px 0;
+            width: 100%;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+        }
+
+        .option-btn:active {
+            background-color: #ffeef2;
+            transform: scale(0.98);
+        }
+
+        .feedback-msg {
+            margin-top: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            min-height: 28px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: #9c2262;
+            text-decoration: underline;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 25px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* POPUP MODALS */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 500;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-card {
+            background: #fff;
+            border-radius: 22px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 88vh;
+            overflow-y: auto;
+            padding: 28px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            text-align: center;
+            animation: modalPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-card.wrong-easter-egg {
+            border: 2px solid #f8a5c2;
+        }
+
+        .easter-egg-notice {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .proof-container {
+            width: 100%;
+            background: #fdf2f5;
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px dashed #f8a5c2;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .proof-img {
+            max-width: 100%;
+            max-height: 280px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.14);
+            display: block;
+        }
+
+        .modal-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            text-align: left;
+            margin-bottom: 24px;
+            background: #fff0f3;
+            padding: 18px;
+            border-radius: 14px;
+        }
+
+        /* FINAL LOVE LETTER MODAL SPECIFIC STYLES */
+        .letter-modal-card {
+            max-width: 620px;
+            background: #fffdfa;
+            border: 2px solid #f3d2dc;
+            padding: 32px 24px;
+            text-align: left;
+        }
+
+        .letter-modal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 34px;
+            color: #9c2262;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .music-bar {
+            background: #fff0f5;
+            border: 1px solid #ffccd5;
+            padding: 10px 15px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #9c2262;
+            font-weight: bold;
+        }
+
+        .music-btn {
+            background: #d63384;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .letter-content-container {
+            font-size: 16.5px;
+            line-height: 1.85;
+            color: #3a3235;
+        }
+
+        /* SCATTERED PHOTO LAYOUT */
+        .scattered-photo {
+            width: 140px;
+            height: 150px;
+            background: #fff;
+            padding: 6px 6px 20px 6px;
+            border-radius: 6px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            border: 1px solid #e0d0d5;
+            margin: 10px 15px 12px 15px;
+        }
+
+        .scattered-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .float-left {
+            float: left;
+            transform: rotate(-3deg);
+        }
+
+        .float-right {
+            float: right;
+            transform: rotate(3deg);
+        }
+
+        .center-photo {
+            display: block;
+            margin: 25px auto;
+            width: 200px;
+            height: 200px;
+            transform: rotate(-1deg);
+        }
+
+        .paragraph-block {
+            margin-bottom: 22px;
+            clear: none;
+        }
+
+        .clearfix {
+            clear: both;
+        }
+
+        .close-modal-btn {
+            background-color: #d63384;
+            color: white;
+            border: none;
+            padding: 14px 38px;
+            font-size: 18px;
+            border-radius: 28px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 5px 15px rgba(214, 51, 132, 0.35);
+            display: block;
+            margin: 30px auto 10px auto;
+        }
+
+        .retry-modal-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 14px 38px;
+            font-size: 18px;
+            border-radius: 28px;
+            cursor: pointer;
+            font-family: 'Playfair Display', serif;
+            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.3);
+        }
+
+        /* PARTICLE ANIMATIONS */
+        .flower-particle {
+            position: absolute;
+            font-size: 30px;
+            pointer-events: none;
+            z-index: 999;
+            opacity: 0;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(0.5); opacity: 0; }
+            15% { opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(1.3) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes modalPop {
+            0% { transform: scale(0.7); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+    <!-- LOCAL AUDIO PLAYER (song.mp3) -->
+    <audio id="local-audio-player" loop preload="auto">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- HIGH-FREQUENCY DYNAMIC AMBIENT LAYER -->
+    <div class="ambient-layer">
+        <div class="floating-element size-sm" style="left: 5%; animation-delay: 0s; animation-duration: 6s;">🌺</div>
+        <div class="floating-element size-sm" style="left: 18%; animation-delay: 2.5s; animation-duration: 7s;">🌷</div>
+        <div class="floating-element size-sm" style="left: 32%; animation-delay: 1.2s; animation-duration: 5.5s;">💖</div>
+        <div class="floating-element size-sm" style="left: 62%; animation-delay: 3.8s; animation-duration: 6.5s;">💮</div>
+        <div class="floating-element size-sm" style="left: 82%; animation-delay: 0.8s; animation-duration: 7.2s;">🌸</div>
+
+        <div class="floating-element size-md" style="left: 12%; animation-delay: 1.5s; animation-duration: 8s;">🌷</div>
+        <div class="floating-element size-md" style="left: 28%; animation-delay: 4.0s; animation-duration: 6.8s;">🌺</div>
+        <div class="floating-element size-md" style="left: 48%; animation-delay: 0.5s; animation-duration: 7.5s;">💕</div>
+        <div class="floating-element size-md" style="left: 70%; animation-delay: 2.2s; animation-duration: 8.2s;">🌷</div>
+        <div class="floating-element size-md" style="left: 90%; animation-delay: 3.1s; animation-duration: 6.4s;">💮</div>
+
+        <div class="floating-element size-lg" style="left: 8%; animation-delay: 3.2s; animation-duration: 9s;">🌺</div>
+        <div class="floating-element size-lg" style="left: 38%; animation-delay: 1.8s; animation-duration: 8.5s;">💖</div>
+        <div class="floating-element size-lg" style="left: 58%; animation-delay: 4.5s; animation-duration: 9.5s;">🌷</div>
+        <div class="floating-element size-lg" style="left: 78%; animation-delay: 0.2s; animation-duration: 8.8s;">🌺</div>
+
+        <div class="floating-element size-xl" style="left: 22%; animation-delay: 0.7s; animation-duration: 11s;">🌺</div>
+        <div class="floating-element size-xl" style="left: 52%; animation-delay: 3.5s; animation-duration: 10.5s;">💮</div>
+        <div class="floating-element size-xl" style="left: 85%; animation-delay: 1.9s; animation-duration: 12s;">🌷</div>
+
+        <div class="hopping-bunny size-md" style="animation-delay: 0s; animation-duration: 9s;">🐰🥕</div>
+        <div class="hopping-bunny size-xl" style="animation-delay: 3.5s; animation-duration: 11s;">🐰🥕</div>
+        <div class="hopping-bunny size-sm" style="animation-delay: 6.8s; animation-duration: 8s;">🐰🥕</div>
+        <div class="hopping-bunny size-lg" style="animation-delay: 9.2s; animation-duration: 10s;">🐰🥕</div>
+    </div>
+
+    <!-- SCREEN 1: ENVELOPE EXTERIOR -->
+    <div id="screen-envelope">
+        <div class="envelope-corner-flower flower-tl">🌺</div>
+        <div class="envelope-corner-flower flower-tr">🌷</div>
+        <div class="envelope-corner-flower flower-bl">💮</div>
+        <div class="envelope-corner-flower flower-br">🌺</div>
+
+        <h2>Happy 213 days to us! ❤️</h2>
+        <button class="bouquet-seal" id="bouquet-seal" onclick="triggerExplosionAndOpen()">💐</button>
+        <div class="envelope-hint">(Tap the bouquet to open)</div>
+    </div>
+
+    <!-- SCREEN 2: FULL SCREEN GAME & LETTER HUB -->
+    <div id="screen-game">
+        <div class="game-wrapper">
+            <!-- MAIN GAME MENU -->
+            <div id="game-menu">
+                <h1 class="game-title">How Well Do You Know Our Relationship?</h1>
+                
+                <div class="game-rules">
+                    <strong>📌 Rules:</strong> Please complete all 3 questions in order to unlock your secret monthsary letter! Start with <b>"I Love You"</b> on the left, then move to <b>"😏"</b>, and finish with <b>"💋"</b>!
+                </div>
+
+                <!-- HORIZONTAL 3-BUTTON LAYOUT -->
+                <div class="horizontal-category-container">
+                    <button class="menu-btn" id="btn-q1" onclick="openQuiz('q1')">I Love You</button>
+                    <button class="menu-btn locked" id="btn-q2" onclick="openQuiz('q2')">😏 🔒</button>
+                    <button class="menu-btn locked" id="btn-q3" onclick="openQuiz('q3')">💋 🔒</button>
+                </div>
+
+                <!-- LOCKED LETTER CARD WITH CHAINS -->
+                <div class="final-letter-card" id="letter-card">
+                    <div class="chain-display" id="chain-icon">⛓️🔒⛓️</div>
+                    <div class="letter-hint-text" id="letter-hint">Answer the 3 questions above to break the chains and unlock your letter!</div>
+                    <button class="final-letter-btn locked" id="btn-final-letter" onclick="openFinalLetter()">📄 Locked Secret Love Letter</button>
+                </div>
+            </div>
+
+            <!-- QUESTION 1: I LOVE YOU -->
+            <div id="quiz-q1" class="quiz-box">
+                <div class="quiz-question">When was the first time you said "I love you" to me?</div>
+                <button class="option-btn" onclick="checkAnswer('q1', 'March 30')">March 30</button>
+                <button class="option-btn" onclick="checkAnswer('q1', 'March 31')">March 31</button>
+                <button class="option-btn" onclick="checkAnswer('q1', 'April 1')">April 1</button>
+                <div id="feedback-q1" class="feedback-msg"></div>
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+            </div>
+
+            <!-- QUESTION 2: 😏 -->
+            <div id="quiz-q2" class="quiz-box">
+                <div class="quiz-question">When was our first Luxelite?</div>
+                <button class="option-btn" onclick="checkAnswer('q2', 'July 24')">July 24</button>
+                <button class="option-btn" onclick="checkAnswer('q2', 'April 8')">April 8</button>
+                <button class="option-btn" onclick="checkAnswer('q2', 'June 16')">June 16</button>
+                <div id="feedback-q2" class="feedback-msg"></div>
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+            </div>
+
+            <!-- QUESTION 3: 💋 -->
+            <div id="quiz-q3" class="quiz-box">
+                <div class="quiz-question">Where did our first kiss take place?</div>
+                <button class="option-btn" onclick="checkAnswer('q3', 'Super Mario Galaxy Movie')">Super Mario Galaxy Movie</button>
+                <button class="option-btn" onclick="checkAnswer('q3', 'Diyan lang sa tabi tabi')">Diyan lang sa tabi tabi</button>
+                <button class="option-btn" onclick="checkAnswer('q3', 'While walking during one of our dates')">While walking during one of our dates</button>
+                <div id="feedback-q3" class="feedback-msg"></div>
+                <button class="back-btn" onclick="showMenu()">← Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- POP-UP MODAL FOR QUESTION 1 (MARCH 31) -->
+    <div class="modal-overlay" id="modal-q1">
+        <div class="modal-card">
+            <div class="proof-container">
+                <img src="proof.jpg" alt="March 31 Proof Screenshot" class="proof-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x240/ffeef2/9c2262?text=proof.jpg+Not+Found';">
+            </div>
+            
+            <div class="modal-text">
+                March 31! I never told you this maybe dahil ma ego ako but I was really nervous that day for my speech, I remember nasa upuan lang ako like inuulit-ulit ko kung paano bibigkasin yung mga certain words then bigla may nagping then I saw the words that lessened my kaba during the presentation hihihihi. So thankyew babi for saying I love you to me for the first time ever, I promise I'll never forget how special those words mean to me when it comes to you. I love you.
+            </div>
+            
+            <button class="close-modal-btn" onclick="closeModalAndSolve('q1')">Continue ❤️</button>
+        </div>
+    </div>
+
+    <!-- EASTER EGG MODAL FOR APRIL 8 (WRONG BUT SPECIAL - FIRST DATE) -->
+    <div class="modal-overlay" id="modal-q2-april8">
+        <div class="modal-card wrong-easter-egg">
+            <div class="proof-container">
+                <img src="date.jpg" alt="April 8 First Date Photo" class="proof-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x240/ffeef2/9c2262?text=date.jpg+Not+Found';">
+            </div>
+            <div class="modal-text">
+                <strong>Wrong answer for Luxelite babi! 😜 But April 8 was our first date!</strong><br><br>
+                I still remember u being late here and I got mad, but after telling me what happened and how terrible your day was on April 8, I made it my mission that day to make u happy and enjoy our first of many many dates and first of many experiences we will encounter together. ❤️
+            </div>
+            <button class="retry-modal-btn" onclick="recordEasterEgg('april8')">Try Again 😉</button>
+        </div>
+    </div>
+
+    <!-- EASTER EGG MODAL FOR JUNE 16 (WRONG BUT SPECIAL - FIRST BRAWL STARS) -->
+    <div class="modal-overlay" id="modal-q2-june16">
+        <div class="modal-card wrong-easter-egg">
+            <div class="proof-container">
+                <img src="brawl.jpg" alt="June 16 Brawl Stars Photo" class="proof-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x240/ffeef2/9c2262?text=brawl.jpg+Not+Found';">
+            </div>
+            <div class="modal-text">
+                <strong>Nope! Not Luxelite babi! 🎮 But June 16 was the first time you played Brawl Stars with me!</strong><br><br>
+                I remember how clueless or bad you were at the start and I find it cute how bossy you were up until now na sinasabihan mo pa rin ako what to do like <em>"okay mommy tell me what to do next"</em> hihihi.<br><br>
+                I love playing brawl with u and this is probably my favorite leisure time with u. I'm so glad I could get you to play one of my favorite games and for it to become one of your favorite games as well. You've actually improved a lot over the past 4-5 months like gumaling yung gamesense mo and mechanics and I love that we both improve together as a couple dito sa favorite game natin. 🏆
+            </div>
+            <button class="retry-modal-btn" onclick="recordEasterEgg('june16')">Try Again 😉</button>
+        </div>
+    </div>
+
+    <!-- SUCCESS POP-UP MODAL FOR JULY 24 (FIRST LUXELITE) -->
+    <div class="modal-overlay" id="modal-q2-july24">
+        <div class="modal-card">
+            <div class="proof-container">
+                <img src="luxelite.jpg" alt="July 24 Luxelite Photo" class="proof-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x240/ffeef2/9c2262?text=luxelite.jpg+Not+Found';">
+            </div>
+            <div class="modal-text">
+                <strong>Correct! July 24 was our first Luxelite! 🔥😏</strong><br><br>
+                I still remember that we were trying so hard to find a room for us and when we found one, it turned into a hassle to actually arrive at the hotel. Pero now parang mas madali na since sanay tayo, but I can't help but still find it cute kung paano tayo nahihirapan dati compared now.<br><br>
+                And don't get me started kung gaano ka kasarap👅, how much you easily turn me on, how much you easily can make my dick hard. Oh baby I can't stop remembering all the things we did hihihih.<br><br>
+                But anyways love, I love all the firsts we could get to experience together especially this one since this was a huge step towards sa relationship natin and I wouldn't want it any other way with anyone.<br><br>
+                I can't help but get more and more excited for our future together where after everything we've experienced, after every hardship and obstacles we face that when we're finally together, living together, waking up together, eating breakfast and eating dinner together, sleeping at night together, how worth it all that hardships and obstacles we took to arrive at this point.<br><br>
+                I love you and I'm so grateful I could get to experience all of these firsts with you. ❤️
+            </div>
+
+            <div id="q2-easter-notice" class="easter-egg-notice hidden">
+                💡 <strong>Notice for babi:</strong> You solved this on the first try! But did you know there are <strong>2 secret easter egg memories</strong> hidden under April 8 & June 16? You can tap Question #2 anytime to check them out! 💖
+            </div>
+
+            <button class="close-modal-btn" onclick="closeModalAndSolve('q2')">Continue ❤️</button>
+        </div>
+    </div>
+
+    <!-- SUCCESS POP-UP MODAL FOR QUESTION 3 (SUPER MARIO MOVIE FIRST KISS) -->
+    <div class="modal-overlay" id="modal-q3">
+        <div class="modal-card">
+            <div class="proof-container">
+                <img src="mario.jpg" alt="Super Mario Movie First Kiss" class="proof-img" onerror="this.onerror=null; this.src='https://via.placeholder.com/400x240/ffeef2/9c2262?text=mario.jpg+Not+Found';">
+            </div>
+            <div class="modal-text">
+                <strong>Correct! Super Mario Galaxy Movie! 💋🍿</strong><br><br>
+                Baby I forgot the movie we watched when we first kissed huhuhu, cus I remember during the first time we watched a movie u gave me a yummy makeout kiss hihi but I forgot which movie it was, then the next time we watched it was super mario galaxy movie and you gave me an even yummier kiss so yummy I remembered it so much and it became memorable for me hihihihi.<br><br>
+                You said u were only gonna kiss me but u went full on make-out with yummy tongue and I loved it so much that remembering it still turns me on OOPS sowi, I love you baby thank you for kissing your baby always hihihi in return I'll kiss u lots and lots and lots in the future. I love you so much! ❤️
+            </div>
+            <button class="close-modal-btn" onclick="closeModalAndSolve('q3')">Unlock Final Letter! 💌</button>
+        </div>
+    </div>
+
+    <!-- UNLOCKED FINAL LOVE LETTER MODAL WITH SCATTERED PHOTOS -->
+    <div class="modal-overlay" id="modal-final-letter">
+        <div class="modal-card letter-modal-card">
+            <h2 class="letter-modal-title">Happy 7th Monthsary, My Love! ❤️</h2>
+            
+            <div class="music-bar">
+                <span>🎵 Playing: Oh My Angel - Bertha Tillman</span>
+                <button class="music-btn" id="music-toggle-btn" onclick="toggleMusic()">Pause ⏸️</button>
+            </div>
+
+            <div class="letter-content-container">
+                
+                <!-- PARAGRAPH 1 + PHOTO 1 (LEFT) -->
+                <div class="paragraph-block">
+                    <div class="scattered-photo float-left">
+                        <img src="1.jpg" alt="Memory 1" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/ffeef2/9c2262?text=1.jpg';">
+                    </div>
+                    Happy 7th monthsary my love, I'm kinda making this letter on the fly so I'm sorry if it isn't up to ur expectations babi but I'll still try my very best. I have been so so so happy for the past 7 months with you and during these 7 months with u I have been all the more sure that I wanna spend my whole life with you na.
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- PARAGRAPH 2 + PHOTO 2 (RIGHT) -->
+                <div class="paragraph-block">
+                    <div class="scattered-photo float-right">
+                        <img src="2.jpg" alt="Memory 2" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/ffeef2/9c2262?text=2.jpg';">
+                    </div>
+                    I know I may not be perfect and never has been the perfect boyfriend for you but I know to myself that noone and I mean that no other boy would love you more as I love you, I'm sorry love for all the times I have hurt you and I hope you know how much I hate myself and deeply regret it for hurting you.
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- PARAGRAPH 3 + PHOTO 3 (LEFT) -->
+                <div class="paragraph-block">
+                    <div class="scattered-photo float-left">
+                        <img src="3.jpg" alt="Memory 3" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/ffeef2/9c2262?text=3.jpg';">
+                    </div>
+                    I love you so much baby I really do you're the only one for me, the only one in my eyes, the only one beautiful, the only one pretty and sexy, the only one cute, the only one smart, the only one maldita, the only one bossy, the only one sweet, the only one loving, the only one babi in my eyes.
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- PARAGRAPH 4 + PHOTO 4 (RIGHT) -->
+                <div class="paragraph-block">
+                    <div class="scattered-photo float-right">
+                        <img src="4.jpg" alt="Memory 4" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/ffeef2/9c2262?text=4.jpg';">
+                    </div>
+                    I hope you noticed that the flowers like sa start of the message where hibiscus, lillies, and tulips the flowers that u really really liked the most since I noticed ang tagal na kita nabigyan ng flowers, why not give u online flowers hihihihi. The theme of the letter was about our first times together and I made this the theme since I wanted to tell u that I hope and I want us to experience many many many more first times together as a couple, I'd hate it if I wasn't the one with you experiencing many of your firsts and I would deeply deeply regret it if I lost you since you mean the world to me.
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- PARAGRAPH 5 + PHOTO 5 (CENTER) -->
+                <div class="paragraph-block">
+                    I love how in these past 7 months you took great care of me, always looked out for me, always tried your best for our relationship. Your actions never goes unnoticed and I love all the little ways you show your love to me. I really am grateful for you entering my life and I wouldn't want anyone else but you.
+                    
+                    <div class="scattered-photo center-photo">
+                        <img src="5.jpg" alt="Memory 5" onerror="this.onerror=null; this.src='https://via.placeholder.com/200/ffeef2/9c2262?text=5.jpg';">
+                    </div>
+
+                    <p style="text-align: center; font-size: 20px; font-weight: bold; color: #9c2262; margin-top: 15px;">I love you forever and always! ❤️</p>
+                </div>
+
+                <div class="clearfix"></div>
+            </div>
+
+            <button class="close-modal-btn" onclick="closeModal('modal-final-letter')">I Love You Too Murshatot! ❤️</button>
+        </div>
+    </div>
+
+    <script>
+        const flowers = ['🌺', '🌷', '💮', '🌸', '💖', '✨', '💕', '❤️', '🐰', '🥕', '💐', '💋'];
+        let isQ1Solved = false;
+        let isQ2Solved = false;
+        let isQ3Solved = false;
+
+        let checkedApril8 = false;
+        let checkedJune16 = false;
+        let isMusicPlaying = false;
+
+        function triggerExplosionAndOpen() {
+            const seal = document.getElementById('bouquet-seal');
+            const envelope = document.getElementById('screen-envelope');
+            
+            spawnHeartExplosion(seal);
+            envelope.classList.add('unfolding');
+
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                const gameScreen = document.getElementById('screen-game');
+                gameScreen.style.display = 'block';
+                
+                setTimeout(() => {
+                    gameScreen.classList.add('visible');
+                }, 50);
+            }, 600);
+        }
+
+        function spawnHeartExplosion(element) {
+            const rect = element.getBoundingClientRect();
+
+            for (let i = 0; i < 35; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'flower-particle';
+                particle.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 90 + Math.random() * 180;
+                const tx = Math.cos(angle) * distance + 'px';
+                const ty = Math.sin(angle) * distance + 'px';
+                
+                particle.style.setProperty('--tx', tx);
+                particle.style.setProperty('--ty', ty);
+                
+                particle.style.left = (rect.left + rect.width / 2 - 14) + 'px';
+                particle.style.top = (rect.top + rect.height / 2 - 14) + 'px';
+                particle.style.animation = 'explode 1.3s cubic-bezier(0.1, 0.8, 0.3, 1) forwards';
+
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 1300);
+            }
+        }
+
+        function openQuiz(quizId) {
+            if (quizId === 'q2' && !isQ1Solved) {
+                alert('Please solve the "I Love You" question first babi! 💕');
+                return;
+            }
+            if (quizId === 'q3' && !isQ2Solved) {
+                alert('Please solve the "😏" question second babi! 😉');
+                return;
+            }
+
+            document.getElementById('game-menu').classList.add('hidden');
+            document.getElementById('quiz-q1').style.display = 'none';
+            document.getElementById('quiz-q2').style.display = 'none';
+            document.getElementById('quiz-q3').style.display = 'none';
+
+            document.getElementById('quiz-' + quizId).style.display = 'block';
+        }
+
+        function showMenu() {
+            document.getElementById('quiz-q1').style.display = 'none';
+            document.getElementById('quiz-q2').style.display = 'none';
+            document.getElementById('quiz-q3').style.display = 'none';
+            document.getElementById('game-menu').classList.remove('hidden');
+        }
+
+        function checkAnswer(quizId, choice) {
+            const feedback = document.getElementById('feedback-' + quizId);
+            
+            if (quizId === 'q1') {
+                if (choice === 'March 31') {
+                    feedback.style.color = '#28a745';
+                    feedback.innerHTML = 'Correct! March 31 🥰💖';
+                    
+                    const targetBtn = window.event ? window.event.target : document.getElementById('quiz-q1');
+                    spawnHeartExplosion(targetBtn);
+
+                    setTimeout(() => {
+                        document.getElementById('modal-q1').style.display = 'flex';
+                    }, 500);
+                } else {
+                    feedback.style.color = '#d9534f';
+                    feedback.innerHTML = 'Nope! Try again babi 😜';
+                }
+            } else if (quizId === 'q2') {
+                if (choice === 'July 24') {
+                    feedback.style.color = '#28a745';
+                    feedback.innerHTML = 'Correct! July 24 🔥🥰';
+                    
+                    const targetBtn = window.event ? window.event.target : document.getElementById('quiz-q2');
+                    spawnHeartExplosion(targetBtn);
+
+                    const notice = document.getElementById('q2-easter-notice');
+                    if (!checkedApril8 || !checkedJune16) {
+                        notice.classList.remove('hidden');
+                    } else {
+                        notice.classList.add('hidden');
+                    }
+
+                    setTimeout(() => {
+                        document.getElementById('modal-q2-july24').style.display = 'flex';
+                    }, 500);
+                } else if (choice === 'April 8') {
+                    checkedApril8 = true;
+                    feedback.style.color = '#ff9900';
+                    feedback.innerHTML = 'Wrong for Luxelite, but April 8 was special! ❤️';
+                    setTimeout(() => {
+                        document.getElementById('modal-q2-april8').style.display = 'flex';
+                    }, 400);
+                } else if (choice === 'June 16') {
+                    checkedJune16 = true;
+                    feedback.style.color = '#ff9900';
+                    feedback.innerHTML = 'Wrong for Luxelite, but June 16 was special! 🎮';
+                    setTimeout(() => {
+                        document.getElementById('modal-q2-june16').style.display = 'flex';
+                    }, 400);
+                }
+            } else if (quizId === 'q3') {
+                if (choice === 'Super Mario Galaxy Movie') {
+                    feedback.style.color = '#28a745';
+                    feedback.innerHTML = 'Correct! Super Mario Galaxy Movie 💋🍿';
+                    
+                    const targetBtn = window.event ? window.event.target : document.getElementById('quiz-q3');
+                    spawnHeartExplosion(targetBtn);
+
+                    setTimeout(() => {
+                        document.getElementById('modal-q3').style.display = 'flex';
+                    }, 500);
+                } else {
+                    feedback.style.color = '#d9534f';
+                    feedback.innerHTML = 'Nope! Try again babi 😜💋';
+                }
+            }
+        }
+
+        function recordEasterEgg(type) {
+            if (type === 'april8') checkedApril8 = true;
+            if (type === 'june16') checkedJune16 = true;
+            closeModal('modal-q2-' + type);
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function closeModalAndSolve(quizId) {
+            if (quizId === 'q1') {
+                document.getElementById('modal-q1').style.display = 'none';
+                isQ1Solved = true;
+                
+                const btn1 = document.getElementById('btn-q1');
+                btn1.innerHTML = 'I Love You ✅';
+                btn1.classList.add('solved');
+                
+                const btn2 = document.getElementById('btn-q2');
+                btn2.classList.remove('locked');
+                btn2.innerHTML = '😏';
+            } else if (quizId === 'q2') {
+                document.getElementById('modal-q2-july24').style.display = 'none';
+                isQ2Solved = true;
+                
+                const btn2 = document.getElementById('btn-q2');
+                btn2.innerHTML = '😏 ✅';
+                btn2.classList.add('solved');
+                
+                const btn3 = document.getElementById('btn-q3');
+                btn3.classList.remove('locked');
+                btn3.innerHTML = '💋';
+            } else if (quizId === 'q3') {
+                document.getElementById('modal-q3').style.display = 'none';
+                isQ3Solved = true;
+                
+                const btn3 = document.getElementById('btn-q3');
+                btn3.innerHTML = '💋 ✅';
+                btn3.classList.add('solved');
+            }
+            
+            checkAllQuestionsComplete();
+            showMenu();
+        }
+
+        function checkAllQuestionsComplete() {
+            if (isQ1Solved && isQ2Solved && isQ3Solved) {
+                const finalBtn = document.getElementById('btn-final-letter');
+                const card = document.getElementById('letter-card');
+                const chain = document.getElementById('chain-icon');
+                const hint = document.getElementById('letter-hint');
+                
+                chain.innerHTML = '✨🔓✨';
+                hint.innerHTML = '🎉 All 3 questions answered! Your letter is now unlocked!';
+                
+                finalBtn.classList.remove('locked');
+                finalBtn.innerHTML = '📄 Read Secret Love Letter ❤️';
+                card.classList.add('unlocked');
+            }
+        }
+
+        function openFinalLetter() {
+            if (!isQ1Solved || !isQ2Solved || !isQ3Solved) {
+                alert('Please complete all 3 questions first to break the chains and unlock your letter babi! 💕');
+                return;
+            }
+            
+            const btn = document.getElementById('btn-final-letter');
+            spawnHeartExplosion(btn);
+
+            // Open Letter Modal
+            document.getElementById('modal-final-letter').style.display = 'flex';
+
+            // Play Local song.mp3
+            const audioPlayer = document.getElementById('local-audio-player');
+            audioPlayer.play().then(() => {
+                isMusicPlaying = true;
+                document.getElementById('music-toggle-btn').innerHTML = "Pause ⏸️";
+            }).catch(err => {
+                console.log("Audio play deferred until user interaction", err);
+            });
+        }
+
+        function toggleMusic() {
+            const audioPlayer = document.getElementById('local-audio-player');
+            const btn = document.getElementById('music-toggle-btn');
+
+            if (isMusicPlaying) {
+                audioPlayer.pause();
+                btn.innerHTML = "Play ▶️";
+                isMusicPlaying = false;
+            } else {
+                audioPlayer.play();
+                btn.innerHTML = "Pause ⏸️";
+                isMusicPlaying = true;
+            }
+        }
+    </script>
+</body>
+</html>
